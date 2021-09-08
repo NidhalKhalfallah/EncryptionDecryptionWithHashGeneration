@@ -223,7 +223,7 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
 
         public void EncryptOnExecute()
         {
-            if (LegitKey() == false) MessageBox.Show("Please enter a key in hexadecimal representation");
+            if (LegitHexadecimal(KeyText) == false) MessageBox.Show("Please enter a key in hexadecimal representation");
             else
             {
                 if (!Directory.Exists(ImageDirectory))
@@ -235,7 +235,7 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
                     File.Create(ImageDirectory + "/" + ImageName + ".encrypt").Close();
                     using (StreamWriter sw = File.CreateText(ImageDirectory + "/" + ImageName + ".encrypt"))
                     {
-                        sw.WriteLine(XOR(HashedText, KeyText));
+                        sw.Write(XOR(HashedText, KeyText));
                     }
                     MessageBox.Show("The encrypted file has been successfully created");
                 }
@@ -245,16 +245,17 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
 
         public void DecryptOnExecute()
         {
-            if (File.Exists(ImageDirectory + "/" + ImageName + ".png"))
+            if (File.Exists(ImageDirectory + "/" + ImageName + ".encrypt"))
             {
-                if (LegitKey() == false) MessageBox.Show("The key has to be in hexadecimal representation ");
+                string HashedString = File.ReadAllText(FileAddress);
+                if (LegitHexadecimal(KeyText) == false) MessageBox.Show("The key has to be in hexadecimal representation ");
+                else if (LegitHexadecimal(HashedString) == false) MessageBox.Show("The .encrypt file contains a non hexadecimal string of characters");
                 else
-                {
-                    string HashedString = File.ReadAllText(FileAddress);
+                { 
                     HashedText = XOR(HashedString, KeyText);
                 }
             }
-            else { MessageBox.Show("The file " + ImageDirectory + "/" + ImageName + ".png doesn't exist anymore"); }  
+            else { MessageBox.Show("The file " + ImageDirectory + "\\" + ImageName + ".encrypt doesn't exist anymore"); }  
         }
 
         //This method converts a hexadecimal character to the binary form
@@ -279,7 +280,7 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
         }
 
         //This method converts a binary character to the hexadecimal form
-        private char BinaryToHexadecimal(string Binary)
+        public char BinaryToHexadecimal(string Binary)
         {
             int Hexadecimal = 0;
             char Hexadecimalchar = 'K';
@@ -298,7 +299,7 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
         }
 
         //This method gives the result of the XOR operation applied on two hexadecimal characters
-        private string XORTwoChars(char MD5HashChar, char KeyChar)
+        public string XORTwoChars(char MD5HashChar, char KeyChar)
         {
             string MD5HashBinary = HexadecimalToBinary(MD5HashChar).ToString();
             string KeyBinary = HexadecimalToBinary(KeyChar).ToString();
@@ -311,28 +312,28 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
         }
 
         //This method gives the result of the XOR operation applied on two hexadecimal strings
-        private string XOR(string MD5Hash, string Key)
+        public string XOR(string MD5Hash, string Key)
         {
             string XORResult = "";
             //In case the given key is shorter than 32 characters we repeat the key until it becomes longer than 32 character
             string Key32 = Key;
-            while (Key32.Length < 32) Key32 += Key;
-            for (int i = 0; i < 32; i++)
+            while (Key32.Length < MD5Hash.Length) Key32 += Key;
+            for (int i = 0; i < MD5Hash.Length; i++)
             {
                 XORResult += BinaryToHexadecimal(XORTwoChars(MD5Hash[i], Key32[i]));
             }
             return (XORResult);
         }
 
-        //This method checks if the given Key is hexadecimal
-        private bool LegitKey()
+        //This method checks if a string is hexadecimal
+        public bool LegitHexadecimal(string ToBeChecked)
         {
             char[] hex_allowed = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F' };
             bool isLegit = true;
             bool isHexadecimal = true;
-            if ((KeyText == null) || (KeyText == "")) isLegit = false;
+            if ((ToBeChecked == null) || (ToBeChecked == "")) isLegit = false;
             else {
-                foreach (char c in KeyText)
+                foreach (char c in ToBeChecked)
                 {
                     if (!(hex_allowed.Contains(c)))
                     {
