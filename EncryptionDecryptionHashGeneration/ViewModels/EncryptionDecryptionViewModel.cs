@@ -239,7 +239,7 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
                     }
                     MessageBox.Show("The encrypted file has been successfully created");
                 }
-                else MessageBox.Show("The file " + ImageDirectory + "/" + ImageName + ".encrypt already exists");
+                else MessageBox.Show("The file " + ImageDirectory + "\\" + ImageName + ".encrypt already exists");
             }
         }
 
