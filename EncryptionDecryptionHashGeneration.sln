@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionDecryptionHashGeneration", "EncryptionDecryptionHashGeneration\EncryptionDecryptionHashGeneration.csproj", "{B72CE576-A5F6-4A42-9A5A-6AA30624931E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionDecryptionHashGeneration.UnitTests", "EncryptionDecryptionHashGeneration.UnitTests\EncryptionDecryptionHashGeneration.UnitTests.csproj", "{5ECB9266-6618-444E-9BBD-138085C0E98F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B72CE576-A5F6-4A42-9A5A-6AA30624931E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B72CE576-A5F6-4A42-9A5A-6AA30624931E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B72CE576-A5F6-4A42-9A5A-6AA30624931E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ECB9266-6618-444E-9BBD-138085C0E98F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECB9266-6618-444E-9BBD-138085C0E98F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECB9266-6618-444E-9BBD-138085C0E98F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECB9266-6618-444E-9BBD-138085C0E98F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

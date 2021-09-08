@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B72CE576-A5F6-4A42-9A5A-6AA30624931E}</ProjectGuid>
+    <ProjectGuid>{843DA939-D7F6-4FFA-99E3-585DFD8E0077}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>EncryptionDecriptionHashGeneration</RootNamespace>
-    <AssemblyName>EncryptionDecriptionHashGeneration</AssemblyName>
+    <RootNamespace>Testwrong</RootNamespace>
+    <AssemblyName>Testwrong</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,13 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\BrowseButtonCommand.cs" />
-    <Compile Include="Commands\DecryptButtonCommand.cs" />
-    <Compile Include="Commands\EncryptButtonCommand.cs" />
-    <Compile Include="ViewModels\EncryptionDecryptionViewModel.cs" />
-    <Compile Include="Views\EncryptDecryptView.xaml.cs">
-      <DependentUpon>EncryptDecryptView.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,14 +63,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\EncryptDecryptView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,7 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\EncryptionDecryptionHashGeneration\EncryptionDecryptionHashGeneration.csproj">
+      <Project>{b72ce576-a5f6-4a42-9a5a-6aa30624931e}</Project>
+      <Name>EncryptionDecryptionHashGeneration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="EncryptionDecryptionHashGeneration.Views.EncryptDecryptView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:EncryptionDecryptionHashGeneration.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <viewModel:EncryptionDecryptionViewModel x:Key="BBVM"></viewModel:EncryptionDecryptionViewModel>
+        </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="344" />
+            <ColumnDefinition Width="344" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                   Grid.Column="0"
+                    Grid.ColumnSpan="2" Margin="6,10">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="6,10">
+                <TextBlock Text="{Binding Source={StaticResource BBVM}, Path=FileAddress}"
+                           Name="FileAddress"
+                           Width="535"
+                       FontSize="20" Margin="6,10"    />
+            </Border>
+            <Button Name="BrowseButton"
+                   Content="Browse"
+                   Command="{Binding Source={StaticResource BBVM},Path=BrowseButtonCommand}"  
+                   FontSize="30"
+                   FontWeight="Bold"
+                   FontFamily="Comic Sans MS"
+                   HorizontalAlignment="Center" Margin="6,10,6,0" Height="50" VerticalAlignment="Top"/>
+        </StackPanel>
+        <TextBlock Text="{Binding Source={StaticResource BBVM}, Path=ResultName}"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2" Margin="6,10"/>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="6,10"    Grid.Row="2"
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="4">
+            <TextBlock Text="{Binding Source={StaticResource BBVM}, Path=HashedText}"
+                   Name="HashedText"
+                   FontSize="20"
+                   Margin="6,10"/>
+        </Border>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="6"
+                    Grid.Column="0" Margin="6,10"
+                    Grid.ColumnSpan="2">
+            <TextBlock Text="Key"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       FontFamily="Comic Sans MS"
+                       Margin="6,10"/>
+            <TextBox Name="KeyText"
+                     Text="{Binding Source={StaticResource BBVM}, Path=KeyText}"
+                     Width="630"
+                     FontSize="20"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="7"
+                    Grid.Column="1" Margin="6,10">
+            <Button Name="EncryptButton"
+                    IsEnabled="True"
+                    Content="Encrypt"
+                    Command="{Binding Source={StaticResource BBVM},Path=EncryptButtonCommand}"  
+                    FontSize="30"
+                    FontWeight="Bold"
+                    FontFamily="Comic Sans MS"
+                   HorizontalAlignment="Center" Margin="6,10"/>
+            <Button Name="DecryptButton"
+                    IsEnabled="True"
+                    Content="Decrypt"
+                    FontSize="30"
+                    FontWeight="Bold"
+                    FontFamily="Comic Sans MS"
+                    Command="{Binding Source={StaticResource BBVM},Path=DecryptButtonCommand}"  
+                    HorizontalAlignment="Center" Margin="6,10" />
+        </StackPanel>
+    </Grid>
+
+</UserControl>
