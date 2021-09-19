@@ -11,26 +11,27 @@ namespace EncryptionDecryptionHashGeneration.Commands
     public class DecryptButtonCommand : ICommand
     {
         EncryptionDecryptionViewModel _encryptionDecryptionViewModel;
+
         public DecryptButtonCommand(EncryptionDecryptionViewModel viewModel)
         {
             _encryptionDecryptionViewModel = viewModel;
-
         }
+
         public bool CanExecute(object parameter)
         {
             return (_encryptionDecryptionViewModel.DecryptCanExecute());
         }
-        public event EventHandler CanExecuteChanged;
 
+        public event EventHandler CanExecuteChanged;
 
         public void Execute(object parameter)
         {
-            _encryptionDecryptionViewModel.DecryptOnExecute();
+            _encryptionDecryptionViewModel.EncryptOnExecute(_encryptionDecryptionViewModel.MyModel.FileExtension);
         }
+
         public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
-
     }
 }

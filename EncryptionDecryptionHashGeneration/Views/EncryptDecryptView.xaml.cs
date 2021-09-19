@@ -24,7 +24,6 @@ namespace EncryptionDecryptionHashGeneration.Views
         public EncryptDecryptView()
         {
             InitializeComponent();
-        }
-     
+        }    
     }
 }

@@ -16,6 +16,7 @@ namespace EncryptionDecryptionHashGeneration.Commands
         {
             _encryptionDecryptionViewModel = viewModel;
         }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -27,6 +28,5 @@ namespace EncryptionDecryptionHashGeneration.Commands
         {
             _encryptionDecryptionViewModel.BrowseOnExecute();
         }
-
     }
 }

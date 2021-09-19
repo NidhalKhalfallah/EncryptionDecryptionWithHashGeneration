@@ -13,40 +13,17 @@ namespace EncryptionDecryptionHashGeneration.UnitTests
             char HexadecimalChar = 'a';
             int Binary = 1010;
             var viewmodel = new EncryptionDecryptionViewModel();
-
             var result = viewmodel.HexadecimalToBinary(HexadecimalChar);
             Assert.AreEqual(result, Binary);
         }
         [TestMethod]
-        public void BinaryToHexadecimalTest()
+        public void XORBinaryTest()
         {
-            char HexadecimalChar = '6';
-            string Binary = "0110";
+            string ToBeEncrypted = "01100100100110010000100111101010101011110101";
+            string Key = "f564d";
+            string XORString = "10010001111111011101011010111100111000101010";
             var viewmodel = new EncryptionDecryptionViewModel();
-
-            var result = viewmodel.BinaryToHexadecimal(Binary);
-            Assert.AreEqual(result, HexadecimalChar);
-        }
-        [TestMethod]
-        public void XORTwoCharsTest()
-        {
-            char HexadecimalChar1 = '7';
-            char HexadecimalChar2 = 'b';
-            string Binary = "1100";
-            var viewmodel = new EncryptionDecryptionViewModel();
-
-            string result = viewmodel.XORTwoChars(HexadecimalChar1, HexadecimalChar2);
-            Assert.AreEqual(result, Binary);
-        }
-        [TestMethod]
-        public void XORTest()
-        {
-            string HexadecimalString1 = "123bcae3467d297f9927aab1613a980d";
-            string HexadecimalString2 = "f56425e2916b8b02f45c2dccaa9662b2";
-            string XORString = "E75FEF01D716A27D6D7B877DCBACFABF";
-            var viewmodel = new EncryptionDecryptionViewModel();
-
-            string result = viewmodel.XOR(HexadecimalString1, HexadecimalString2);
+            string result = viewmodel.XORBinary(ToBeEncrypted, Key);
             Assert.AreEqual(result, XORString);
         }
         [TestMethod]
@@ -54,7 +31,6 @@ namespace EncryptionDecryptionHashGeneration.UnitTests
         {
             string NonHexadecimalString = "123bkl0fb234r3grewgew";
             var viewmodel = new EncryptionDecryptionViewModel();
-
             bool result = viewmodel.LegitHexadecimal(NonHexadecimalString);
             Assert.IsFalse(result);
         }
@@ -63,7 +39,7 @@ namespace EncryptionDecryptionHashGeneration.UnitTests
         {
             var viewmodel = new EncryptionDecryptionViewModel();
             Assert.IsFalse(viewmodel.EncryptButtonCommand.CanExecute(null));
-            viewmodel.EncryptButtonEnabled = true;
+            viewmodel.MyModel.EncryptButtonEnabled = true;
             Assert.IsTrue(viewmodel.EncryptButtonCommand.CanExecute(null));
         }
         [TestMethod]
@@ -71,7 +47,7 @@ namespace EncryptionDecryptionHashGeneration.UnitTests
         {
             var viewmodel = new EncryptionDecryptionViewModel();
             Assert.IsFalse(viewmodel.DecryptButtonCommand.CanExecute(null));
-            viewmodel.DecryptButtonEnabled = true;
+            viewmodel.MyModel.DecryptButtonEnabled = true;
             Assert.IsTrue(viewmodel.DecryptButtonCommand.CanExecute(null));
         }
     }
