@@ -18,13 +18,12 @@ using System.Windows.Threading;
 
 namespace EncryptionDecryptionHashGeneration.ViewModels
 {
-    public class EncryptionDecryptionViewModel : INotifyPropertyChanged
+    public class EncryptionDecryptionViewModel
     {
         public BrowseButtonCommand BrowseButtonCommand { get; set; }
         public EncryptButtonCommand EncryptButtonCommand { get; set; }
         public DecryptButtonCommand DecryptButtonCommand { get; set; }
         public EncryptionDecryptionModel MyModel { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
 
 
         public EncryptionDecryptionViewModel()
@@ -37,14 +36,6 @@ namespace EncryptionDecryptionHashGeneration.ViewModels
                 EncryptButtonEnabled = false,
                 DecryptButtonEnabled = false
             };
-        }
-
-
-        private void RaisePropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (!string.IsNullOrEmpty(propertyName))
-            { this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
-
         }
 
 
